@@ -1,0 +1,69 @@
+@use "@/styles/funcs.scss" as f;
+
+/* ================================= Generic ================================ */
+
+@mixin default() {
+  position: relative;
+  box-sizing: border-box;
+  transition: all 100ms ease-out;
+  scrollbar-width: thin;
+}
+
+@mixin reset($defaults: true) {
+  all: unset;
+  @if $defaults { @include default(); }
+}
+
+@mixin flexbox($reset: false, $direction: column) {
+  @if $reset { @include reset(); }
+
+  display: flex;
+  flex-direction: $direction;
+}
+
+/* ============================== Theme Methods ============================= */
+
+@function C($name, $alpha: 100%) {
+  /* Red fallback to scream at me that I misspelled the color name */
+  $color: var(--x-color-#{$name}, red);
+
+  @if $alpha == 100% { @return $color; }
+  @else              { @return f.set-alpha($color, $alpha); }
+}
+
+@function V($name) {
+  /* 175.26cm fallback 'cause it's funny */
+  $value: var(--x-value-#{$name}, 175.26cm);
+  @return $value;
+}
+
+/* ================================= Sizing ================================= */
+
+@mixin width($value, $min: false, $max: false, $both: false) {
+  width: $value;
+
+  @if $min or $both { min-width: $value; }
+  @if $max or $both { max-width: $value; }
+}
+
+@mixin height($value, $min: false, $max: false, $both: false) {
+  height: $value;
+
+  @if $min or $both { min-height: $value; }
+  @if $max or $both { max-height: $value; }
+}
+
+@mixin size($value, $min: false, $max: false, $both: false) {
+  @include width ($value, $min, $max, $both);
+  @include height($value, $min, $max, $both);
+}
+
+/* ============================== Screen Types ============================== */
+
+@mixin small-screen {
+  @media /* small */ screen and (max-width: 786px) { @content; }
+}
+
+@mixin wide-screen {
+  @media /* wide */ screen and (min-width: 787px) { @content; }
+}
