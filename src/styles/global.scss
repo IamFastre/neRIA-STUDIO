@@ -51,15 +51,24 @@ main {
   &:where([data-variant=page-nav])  { @include height($h100n, $both: true); }
 }
 
-:where(
-  header, footer,
-  nav, section, div,
-  form, label, button,
-  article, summary, details
-) { @include flexbox(true); }
+* {
+  @include default;
+
+  &:where(
+    header, footer,
+    nav, section, div,
+    form, label, button,
+    article, summary, details
+  ) { @include flexbox(true); }
+}
 
 a:where([data-variant=wrapper]) {
   @include flexbox(true);
   color: inherit;
   cursor: pointer;
+}
+
+h1, h2, h3
+h4, h5, h6 {
+  margin: 0;
 }
