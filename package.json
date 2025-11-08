@@ -24,6 +24,6 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.552.0",
-		"titchy": "^0.0.21"
+		"titchy": "^0.0.22"
 	}
 }
