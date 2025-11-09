@@ -19,20 +19,21 @@
 html {
   @include flexbox(true);
 
-  overflow-x: hidden;
   overflow-y: auto;
+  overflow-x: hidden;
 
   -ms-overflow-style: none;
   scrollbar-width: thin;
   &::-webkit-scrollbar { display: none; }
 
-  @include width(100dvw, $both:true);
-  @include height(100dvh, $both:true);
+  @include width(100dvw, 'all');
+  @include height(100dvh, 'all');
 }
 
 body {
   @include flexbox(true);
-  min-height: 100vh;
+  min-height: fit-content;
+  overflow: hidden;
 }
 
 content {
@@ -46,9 +47,9 @@ main {
   $h100s: calc($h100f - V(safe-inset-top) - V(safe-inset-bottom));
   $h100n: calc($h100s - V(nav-height));
 
-  &:where([data-variant=page-full]) { @include height($h100f, $both: true); }
-  &:where([data-variant=page-safe]) { @include height($h100s, $both: true); }
-  &:where([data-variant=page-nav])  { @include height($h100n, $both: true); }
+  &:where([data-variant=page-full]) { @include height($h100f, 'all'); }
+  &:where([data-variant=page-safe]) { @include height($h100s, 'all'); }
+  &:where([data-variant=page-nav])  { @include height($h100n, 'all'); }
 }
 
 * {
@@ -68,7 +69,16 @@ a:where([data-variant=wrapper]) {
   cursor: pointer;
 }
 
+p,
 h1, h2, h3
 h4, h5, h6 {
   margin: 0;
+  line-height: 1.35em;
+}
+
+.titchy {
+  --titchy-color-primary:   var(--x-color-primary);
+  --titchy-color-secondary: var(--x-color-secondary);
+  --titchy-color-tertiary:  var(--x-color-tertiary);
+  --titchy-color-accent:    var(--x-color-accent);
 }
