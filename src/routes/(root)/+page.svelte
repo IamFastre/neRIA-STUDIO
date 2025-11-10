@@ -1,14 +1,25 @@
 <script lang="ts">
-  import { Button } from "titchy";
-  import { Gem, SineWave } from "$/svgs";
+  import { untrack } from "svelte";
   import { fade, fly } from "svelte/transition";
-  import { Cat, ChevronDown, Dog } from "@lucide/svelte";
+  import { page } from "$app/state";
+  import { goto } from "$app/navigation";
+  import { Button } from "titchy";
+  import { ChevronDown } from "@lucide/svelte";
 
-  let contentShown = $state(false);
+  import { Gem } from "$/svgs";
+  import { AboutPage, SkillsPage } from "$/pages";
+
+  let contentShown = $state(!!page.url.hash);
 
   const onClickGem = () => {
     contentShown =! contentShown;
   };
+
+  $effect(() => {
+    untrack(() => {
+      goto(page.url.hash);
+    });
+  });
 </script>
 
 <main class="landing-page" data-variant="page-nav">
@@ -40,22 +51,8 @@
 </main>
 
 {#if contentShown}
-  <main class="content-page odd" data-variant="page-nav">
-    <div class="wave-container">
-      <div class="buffer"></div>
-      <SineWave />
-    </div>
-    <Cat />
-    Meow
-  </main>
-  <main class="content-page even" data-variant="page-nav">
-    <div class="wave-container">
-      <div class="buffer"></div>
-      <SineWave />
-    </div>
-    <Dog />
-    Woof
-  </main>
+  <AboutPage />
+  <SkillsPage />
 {/if}
 
 <style lang="scss">
@@ -125,43 +122,6 @@
 
       :global(svg) {
         animation: blink 1s ease-in-out infinite;
-      }
-    }
-  }
-
-  .content-page {
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-color);
-
-    &.odd {
-      --wave-color: #{C(primary)};
-      --bg-color: #{C(tertiary, 15%)};
-    }
-
-    &.even {
-      --wave-color: #{C(tertiary, 15%)};
-      --bg-color: #{C(primary)};
-    }
-
-    .wave-container {
-      $buffer: 25px;
-
-      position: absolute;
-      top: 0;
-
-      width: 100%;
-        overflow: hidden;
-
-      :global(.wave) {
-        width: 200%;
-        fill: var(--wave-color);
-      }
-
-      .buffer {
-        background-color: var(--wave-color);
-        height: $buffer;
-        width: 100%;
       }
     }
   }

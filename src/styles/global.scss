@@ -26,8 +26,8 @@ html {
   scrollbar-width: thin;
   &::-webkit-scrollbar { display: none; }
 
-  @include width(100dvw, 'all');
-  @include height(100dvh, 'all');
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 body {
