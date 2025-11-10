@@ -102,7 +102,7 @@
   <p>
     You can check the languages, frameworks, tools and technologies I use/have expertise in in the <Link href="#skills">Skills</Link> section.
     <br>
-    I've made a fair share of projects and works that you can check belows on the <Link href="#works">Works</Link> section.
+    I've made a fair share of projects and works that you can check below in the <Link href="#work">Work</Link> section.
   </p>
 
 

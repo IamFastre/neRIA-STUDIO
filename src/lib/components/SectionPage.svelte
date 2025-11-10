@@ -19,8 +19,8 @@
   }: Props = $props();
 </script>
 
-<WavePage>
-  <header {id}>
+<WavePage {id}>
+  <header>
     <Icon />
     <span>{title}</span>
   </header>
@@ -35,7 +35,7 @@
     min-height: fit-content;
 
     .content-container {
-      align-items: start;
+      flex: 1;
       gap: 20px;
     }
   }

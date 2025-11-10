@@ -7,7 +7,7 @@
   import { ChevronDown } from "@lucide/svelte";
 
   import { Gem } from "$/svgs";
-  import { AboutPage, SkillsPage } from "$/pages";
+  import { AboutPage, ContactPage, SkillsPage, WorkPage } from "$/pages";
 
   let contentShown = $state(!!page.url.hash);
 
@@ -53,6 +53,8 @@
 {#if contentShown}
   <AboutPage />
   <SkillsPage />
+  <WorkPage />
+  <ContactPage />
 {/if}
 
 <style lang="scss">
