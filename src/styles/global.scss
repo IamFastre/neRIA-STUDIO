@@ -47,9 +47,20 @@ main {
   $h100s: calc($h100f - V(safe-inset-top) - V(safe-inset-bottom));
   $h100n: calc($h100s - V(nav-height));
 
-  &:where([data-variant=page-full]) { @include height($h100f, 'all'); }
-  &:where([data-variant=page-safe]) { @include height($h100s, 'all'); }
-  &:where([data-variant=page-nav])  { @include height($h100n, 'all'); }
+  &:where([data-variant=page-full]) {
+    &:not([data-expanding]) { @include height($h100f) }
+    &[data-expanding] { min-height: $h100f; }
+  }
+
+  &:where([data-variant=page-safe]) {
+    &:not([data-expanding]) { @include height($h100s) }
+    &[data-expanding] { min-height: $h100s; }
+  }
+
+  &:where([data-variant=page-nav])  {
+    &:not([data-expanding]) { @include height($h100n) }
+    &[data-expanding] { min-height: $h100n; }
+  }
 }
 
 * {

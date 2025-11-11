@@ -38,7 +38,7 @@
   ];
 
   const technologies: Skill[] = [
-    { name:"VS Code",        logo:"/imgs/skills/technologies/vscode.png", rate:3   },
+    { name:"VS Code",        logo:"/imgs/skills/technologies/vscode.png", rate:5   },
     { name:"Node.js",        logo:"/imgs/skills/technologies/node.png",   rate:5   },
     { name:"Git",            logo:"/imgs/skills/technologies/git.png",    rate:4   },
     { name:"AWS",            logo:"/imgs/skills/technologies/aws.png",    rate:3.5 },
@@ -128,6 +128,8 @@
       &:hover {
         background-color: C(accent, 20%);
         scale: 1.03;
+
+        .list .skill .logo { mix-blend-mode: normal; }
       }
 
       .header {
@@ -169,9 +171,10 @@
           }
 
           .logo {
-            @include size(1.2em);
+            @include size(1.25em);
             object-fit: contain;
             border-radius: 5px;
+            mix-blend-mode: luminosity;
           }
 
           .rate {

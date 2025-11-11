@@ -19,7 +19,7 @@
   }: Props = $props();
 </script>
 
-<WavePage {id}>
+<WavePage {id} data-expanding>
   <header>
     <Icon />
     <span>{title}</span>
@@ -32,8 +32,6 @@
   @use "@/styles/utils.scss" as *;
 
   :global .wave-page {
-    min-height: fit-content;
-
     .content-container {
       flex: 1;
       gap: 20px;
