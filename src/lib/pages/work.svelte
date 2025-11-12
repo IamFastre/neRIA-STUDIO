@@ -2,6 +2,43 @@
   import { Boxes, Cat } from "@lucide/svelte";
 
   import { SectionPage } from "$/components";
+
+  type Tech = {
+    name:  string;
+    color: string;
+    logo:  `/${string}.png`;
+  };
+
+  type Project = {
+    name:        string;
+    description: string;
+    logo:        `/${string}.png`;
+    preview:     `/${string}.png`;
+    date:        `${string} 20${number}`;
+    stack:       Tech[];
+  };
+
+  const techs: Record<string, Tech> = {
+    ts:        { name:"TypeScript",   color:"#3178c6", logo:"/imgs/skills/languages/ts.png"       },
+    react:     { name:"React",        color:"#61dbfb", logo:"/imgs/skills/libraries/react.png"    },
+    next:      { name:"NextJS",       color:"#000000", logo:"/imgs/skills/frameworks/nextjs.png"  },
+    supabase:  { name:"Supabase",     color:"#3ecf8e", logo:"/imgs/skills/databases/supabase.png" },
+    md:        { name:"Markdown",     color:"#54679f", logo:"/imgs/skills/languages/md.png"       },
+    rn:        { name:"React Native", color:"#61dbfb", logo:"/imgs/skills/libraries/react.png"    },
+    expo:      { name:"Expo",         color:"#000000", logo:"/imgs/skills/frameworks/expo.png"    },
+    // CONTINUE THESE
+  };
+
+  const projects: Project[] = [
+    {
+      name: "The Winery",
+      description: "A Twitter-Reddit hybrid social app, its main goal is to give article-like opinions and rants, with no commenting ability and only a repost one, it allows for more focus on the original post, no commenting ability and rot.",
+      date: "Aug 2021",
+      logo: "/imgs/work/the-winery/logo.png",
+      preview: "/imgs/work/the-winery/logo.png",
+      stack: [],
+    },
+  ];
 </script>
 
 <SectionPage
