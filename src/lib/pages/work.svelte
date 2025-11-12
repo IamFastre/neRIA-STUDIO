@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Boxes, Cat } from "@lucide/svelte";
+  import { Boxes, Cat, type Icon as IconType, SatelliteDish } from "@lucide/svelte";
 
   import { SectionPage } from "$/components";
 
@@ -12,7 +12,7 @@
   type Project = {
     name:        string;
     description: string;
-    logo:        `/${string}.png`;
+    logo:        `/${string}.png` | typeof IconType;
     preview:     `/${string}.png`;
     date:        `${string} 20${number}`;
     stack:       Tech[];
@@ -25,7 +25,9 @@
     supabase:  { name:"Supabase",     color:"#3ecf8e", logo:"/imgs/skills/databases/supabase.png" },
     md:        { name:"Markdown",     color:"#54679f", logo:"/imgs/skills/languages/md.png"       },
     rn:        { name:"React Native", color:"#61dbfb", logo:"/imgs/skills/libraries/react.png"    },
-    expo:      { name:"Expo",         color:"#000000", logo:"/imgs/skills/frameworks/expo.png"    },
+    expo:      { name:"Expo",         color:"#000000", logo:"/imgs/skills/frameworks/expo.png"      },
+    api:       { name:"External API", color:"#8400ff", logo:SatelliteDish                           },
+    reanim:    { name:"Reanimated",   color:"#b07eff", logo:"/imgs/skills/libraries/reanimated.png" },
     // CONTINUE THESE
   };
 
