@@ -1,4 +1,10 @@
-@use "@/styles/funcs.scss" as f;
+@function mix($colors...) {
+  @return color-mix(in srgb, $colors);
+}
+
+@function set-alpha($color, $alpha: 100%) {
+  @return mix($color $alpha, transparent);
+}
 
 /* ================================= Generic ================================ */
 
@@ -28,7 +34,7 @@
   $color: var(--x-color-#{$name}, red);
 
   @if $alpha == 100% { @return $color; }
-  @else              { @return f.set-alpha($color, $alpha); }
+  @else              { @return set-alpha($color, $alpha); }
 }
 
 @function V($name) {
