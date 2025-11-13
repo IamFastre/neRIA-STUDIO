@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Boxes, Cat, type Icon as IconType, SatelliteDish, SquareTerminal, Usb } from "@lucide/svelte";
+  import { Boxes, Cat, GitFork, type Icon as IconType, Link as LinkIcon, SatelliteDish, SquareTerminal, Usb } from "@lucide/svelte";
 
   import { SectionPage } from "$/components";
-  import { Carousel, Panel } from "titchy";
+  import { Carousel, Link, Panel } from "titchy";
 
   type Tech = {
     name:  string;
@@ -15,6 +15,8 @@
     description: string;
     logo:        `/${string}.png`;
     preview:     `/${string}.png`;
+    site?:       `https://${string}`;
+    repo?:       `https://github.com/${string}/${string}`;
     date:        `${string} 20${number}`;
     stack:       Tech[];
   };
@@ -52,7 +54,9 @@
       description: "A Twitter-Reddit hybrid social app, its main goal is to give article-like opinions and rants, with no commenting ability and only a repost one, it allows for more focus on the original post, no commenting ability and rot.",
       date: "Aug 2022",
       logo: "/imgs/work/the-winery/logo.png",
-      preview: "/imgs/work/the-winery/logo.png",
+      preview: "/imgs/work/the-winery/preview.png",
+      site: "https://winery.neria.studio",
+      repo: "https://github.com/IamFastre/The-Winery",
       stack: [tech.ts, tech.react, tech.next, tech.supabase, tech.md],
     },
     {
@@ -60,7 +64,8 @@
       description: "A mix-it-all app, mainly made it as a background app but it spiraled into a mixture of mini-games and clock faces, with Sudoku, Tic-Tac-Toe and Minesweeper. It was fun and app to build and use.",
       date: "Feb 2024",
       logo: "/imgs/work/tuii/logo.png",
-      preview: "/imgs/work/tuii/logo.png",
+      preview: "/imgs/work/tuii/preview.png",
+      repo: "https://github.com/IamFastre/Tuii",
       stack: [tech.ts, tech.rn, tech.expo, tech.api, tech.reanimated],
     },
     {
@@ -68,15 +73,18 @@
       description: "An Iraqi Bingo app built for a client, with admin tools and live data and games. It was a delight to venture into more complex territory making this app for my client, and very happy with it they were.",
       date: "Nov 2024",
       logo: "/imgs/work/lookset/logo.png",
-      preview: "/imgs/work/lookset/logo.png",
+      preview: "/imgs/work/lookset/preview.png",
+      site: "https://lookseet.com",
       stack: [tech.ts, tech.svelte, tech.sveltekit, tech.supabase, tech.express, tech.socketio],
     },
     {
       name: "Titchy",
-      description: "A UI component library for Svelte, built on my own for my projects and experience, though you can get it on npm yourself to use, it’s really sleek and versatile, virtually zero-config, though everything is configurable if you wish.",
+      description: "A UI component library for Svelte, built on my own for my projects and experience, though you can get it on npm yourself to use, it’s really sleek and versatile, virtually zero-config, though everything is configurable if you wish. It's the very UI you see in the website here.",
       date: "Oct 2025",
       logo: "/imgs/work/titchy/logo.png",
-      preview: "/imgs/work/titchy/logo.png",
+      preview: "/imgs/work/titchy/preview.png",
+      site: "https://titchy.neria.studio",
+      repo: "https://github.com/neRIA-Studio/Titchy",
       stack: [tech.ts, tech.svelte, tech.vite, tech.npm],
     },
     {
@@ -84,7 +92,8 @@
       description: "A programming language interpreter for my own custom language named the same; Enuii, built in C# for speed and type strictness. Though it may not be used practically, it was sure great building a custom lexer, parser, semantics analyzer, and evaluator.",
       date: "May 2024",
       logo: "/imgs/skills/languages/cs.png",
-      preview: "/imgs/skills/languages/cs.png",
+      preview: "/imgs/work/enuii/preview.png",
+      repo: "https://github.com/IamFastre/Enuii",
       stack: [tech.cs, tech.dotnet, tech.cli],
     },
     {
@@ -92,7 +101,9 @@
       description: "Programming is fun, but games are more fun, game dev? is not fun. Though I must admit I do love the simplicity yet challenge of this project, a game made in Godot. It’s Pong but with super abilities and local multiplayer and a CPU mode.",
       date: "Sep 2024",
       logo: "/imgs/work/superpong/logo.png",
-      preview: "/imgs/work/superpong/logo.png",
+      preview: "/imgs/work/superpong/preview.png",
+      site: "https://iamfastre.github.io/super-pong/",
+      repo: "https://github.com/IamFastre/super-pong",
       stack: [tech.gd, tech.godot],
     },
     {
@@ -100,7 +111,8 @@
       description: "Boredom can get you places, these places may be so far from home. While I am no Arduino expert, I built a double sensor Sonar for Arduino for the help of a friend. Complete with a Processing GUI over Serial Bus.",
       date: "Nov 2024",
       logo: "/imgs/work/arduino-sonar/logo.png",
-      preview: "/imgs/work/arduino-sonar/logo.png",
+      preview: "/imgs/work/arduino-sonar/preview.png",
+      repo: "https://github.com/IamFastre/arduino-sonar",
       stack: [tech.arduino, tech.serial, tech.processing],
     },
     {
@@ -108,7 +120,9 @@
       description: "This very website you’re on right now, while I’m not sure if it should be added here, I must say I’m proud of it, every line of code in it is written by me, no templates, no external help. Surely a delight to see your achievements on a platform that’s also your own.",
       date: "Nov 2025",
       logo: "/imgs/work/portfolio/logo.png",
-      preview: "/imgs/work/portfolio/logo.png",
+      preview: "/imgs/work/portfolio/preview.png",
+      site: "https://neria.studio",
+      repo: "https://github.com/IamFastre/neRIA-STUDIO",
       stack: [tech.ts, tech.svelte, tech.sveltekit, tech.titchy],
     },
   ];
@@ -120,10 +134,13 @@
   icon={Boxes}
 >
   <div class="work">
+    <p>
+      These are some of my recent projects that I hope give you an idea of me and my way of work.
+    </p>
     <Carousel class="projects">
       {#each projects as proj, i (i)}
         <Panel variant="secondary" class="project">
-          <div class="preview">
+          <div class="preview" style="--preview: url({proj.preview})">
           </div>
           <div class="info">
             <div class="logo">
@@ -135,13 +152,33 @@
                 {proj.date}
               </div>
             </div>
-            <div class="texts">
+            <div class="body">
               <span class="name">
                 {proj.name}
               </span>
               <span class="description">
                 {proj.description}
               </span>
+              {#if proj.site || proj.repo}
+                <div class="links">
+                  {#if proj.site}
+                    <div class="site">
+                      <LinkIcon />
+                      <Link class="site" href={proj.site} external>
+                        {new URL(proj.site).host}
+                      </Link>
+                    </div>
+                  {/if}
+                  {#if proj.repo}
+                    <div class="repo">
+                      <GitFork />
+                      <Link class="repo" href={proj.repo} external>
+                        {new URL(proj.repo).pathname.replace(/^\//, "")}
+                      </Link>
+                    </div>
+                  {/if}
+                </div>
+              {/if}
               <div class="stack">
                 {#each proj.stack as tech}
                   <div class="tech" style="--color: {tech.color}">
@@ -168,28 +205,31 @@
     </Carousel>
   </div>
 </SectionPage>
-
 <style lang="scss">
   @use "@/styles/utils.scss" as *;
 
   .work {
     flex: 1;
-    align-items: center;
-    justify-content: center;
+    gap: 1em;
 
     :global
     .titchy.carousel.projects {
       --carousel-content-width: 70dvw;
+      align-self: center;
 
       .project {
         $g: 10px;
         padding: 0;
-        justify-content: space-between;
-        min-height: 300px;
+        justify-content: end;
+        height: 500px;
+        overflow: hidden;
 
         .preview {
-          flex: 1;
-          min-height: 5rem;
+          @include fill-absolute();
+          background-image: var(--preview);
+          background-size: 100%;
+          background-position: top;
+          background-repeat: repeat;
         }
 
         .info {
@@ -198,6 +238,7 @@
           padding: $g;
           border-radius: 10px;
           background-color: C(accent, 10%);
+          backdrop-filter: blur(35px);
 
           .logo {
             align-items: center;
@@ -207,16 +248,18 @@
             img {
               @include size(4rem);
               object-fit: contain;
+              // background-color: C(accent, 20%);
+              // border: 1px solid C(accent);
+              // border-radius: 10px;
             }
 
             .date {
               font-size: 0.6rem;
-              font-weight: bold;
               color: C(secondary, 30%);
             }
           }
 
-          .texts {
+          .body {
             align-items: start;
             justify-content: center;
             gap: calc($g / 2);
@@ -227,18 +270,39 @@
               font-weight: bold;
             }
 
-            .description {
+            > .description {
               color: C(secondary, 75%);
               font-size: 0.85rem;
             }
 
-            .stack {
+            > .links {
+              gap: calc($g / 2);
+              font-size: 0.9rem;
+
+              > * {
+                flex-direction: row;
+                align-items: center;
+                gap: 1ch;
+
+                :global
+                .titchy.link:is(.site, .repo) {
+                  --link-accent-color: #{C(secondary)};
+                }
+
+                :global(svg) {
+                  color: C(accent);
+                  @include size(1em);
+                }
+              }
+            }
+
+            > .stack {
               flex-direction: row;
               flex-wrap: wrap;
               gap: $g;
               margin-top: $g;
 
-              .tech {
+              > .tech {
                 flex-direction: row;
                 align-items: center;
 
