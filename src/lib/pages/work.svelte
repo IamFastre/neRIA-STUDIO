@@ -2,47 +2,48 @@
   import { Boxes, Cat, type Icon as IconType, SatelliteDish, SquareTerminal, Usb } from "@lucide/svelte";
 
   import { SectionPage } from "$/components";
+  import { Carousel, Panel } from "titchy";
 
   type Tech = {
     name:  string;
     color: string;
-    logo:  `/${string}.png`;
+    logo:  `/${string}.png` | typeof IconType;
   };
 
   type Project = {
     name:        string;
     description: string;
-    logo:        `/${string}.png` | typeof IconType;
+    logo:        `/${string}.png`;
     preview:     `/${string}.png`;
     date:        `${string} 20${number}`;
     stack:       Tech[];
   };
 
-  const techs: Record<string, Tech> = {
-    ts:         { name:"TypeScript",   color:"#3178c6", logo:"/imgs/skills/languages/ts.png"         },
-    react:      { name:"React",        color:"#61dbfb", logo:"/imgs/skills/libraries/react.png"      },
-    next:       { name:"NextJS",       color:"#000000", logo:"/imgs/skills/frameworks/nextjs.png"    },
-    supabase:   { name:"Supabase",     color:"#3ecf8e", logo:"/imgs/skills/databases/supabase.png"   },
-    md:         { name:"Markdown",     color:"#54679f", logo:"/imgs/skills/languages/md.png"         },
-    rn:         { name:"React Native", color:"#61dbfb", logo:"/imgs/skills/libraries/react.png"      },
-    expo:       { name:"Expo",         color:"#000000", logo:"/imgs/skills/frameworks/expo.png"      },
-    api:        { name:"External API", color:"#8400ff", logo:SatelliteDish,                          },
-    reanimated: { name:"Reanimated",   color:"#b07eff", logo:"/imgs/skills/libraries/reanimated.png" },
-    svelte:     { name:"Svelte",       color:"#ff3e00", logo:"/imgs/skills/libraries/svelte.png"      },
-    sveltekit:  { name:"SvelteKit",    color:"#ff3e00", logo:"/imgs/skills/libraries/svelte.png"      },
-    express:    { name:"Express",      color:"#000000", logo:"/imgs/skills/libraries/express.png"     },
-    socketio:   { name:"Socket.IO",    color:"#25c2a0", logo:"/imgs/skills/libraries/socketio.png"    },
-    vite:       { name:"Vite",         color:"#ffcb24", logo:"/imgs/skills/technologies/vite.png",    },
-    npm:        { name:"npm",          color:"#cb3837", logo:"/imgs/skills/technologies/npm.png",     },
-    cs:         { name:"C-Sharp",      color:"#4e29cd", logo:"/imgs/skills/languages/cs.png",         },
-    dotnet:     { name:".NET",         color:"#4e29cd", logo:"/imgs/skills/frameworks/dotnet.png",    },
-    cli:        { name:"CLI",          color:"#8400ff", logo:SquareTerminal,                          },
-    gd:         { name:"GDScript",     color:"#4487b9", logo:"/imgs/skills/languages/gd.png",         },
-    godot:      { name:"Godot",        color:"#4487b9", logo:"/imgs/skills/languages/gd.png",         },
-    arduino:    { name:"Arduino",      color:"#19999f", logo:"/imgs/work/arduino-radar/logo.png",     },
-    serial:     { name:"Serial",       color:"#8400ff", logo:Usb                                      },
-    processing: { name:"Processing",   color:"#0465f7", logo:"/imgs/skills/technologies/processing",  },
-    tirchy:     { name:"Titchy",       color:"#a8f715", logo:"/imgs/work/titchy/logo.png",            },
+  const tech: Record<string, Tech> = {
+    ts:         { name:"TypeScript",   color:"#3178c6", logo:"/imgs/skills/languages/ts.png"             },
+    react:      { name:"React",        color:"#61dbfb", logo:"/imgs/skills/libraries/react.png"          },
+    next:       { name:"NextJS",       color:"#ffffff", logo:"/imgs/skills/frameworks/nextjs.png"        },
+    supabase:   { name:"Supabase",     color:"#3ecf8e", logo:"/imgs/skills/databases/supabase.png"       },
+    md:         { name:"Markdown",     color:"#54679f", logo:"/imgs/skills/languages/md.png"             },
+    rn:         { name:"React Native", color:"#61dbfb", logo:"/imgs/skills/libraries/react.png"          },
+    expo:       { name:"Expo",         color:"#ffffff", logo:"/imgs/skills/frameworks/expo.png"          },
+    reanimated: { name:"Reanimated",   color:"#b07eff", logo:"/imgs/skills/libraries/reanimated.png"     },
+    svelte:     { name:"Svelte",       color:"#ff3e00", logo:"/imgs/skills/libraries/svelte.png"         },
+    sveltekit:  { name:"SvelteKit",    color:"#ff3e00", logo:"/imgs/skills/libraries/svelte.png"         },
+    express:    { name:"Express",      color:"#ffffff", logo:"/imgs/skills/libraries/express.png"        },
+    socketio:   { name:"Socket.IO",    color:"#25c2a0", logo:"/imgs/skills/libraries/socketio.png"       },
+    vite:       { name:"Vite",         color:"#ffcb24", logo:"/imgs/skills/technologies/vite.png",       },
+    npm:        { name:"npm",          color:"#cb3837", logo:"/imgs/skills/technologies/npm.png",        },
+    cs:         { name:"C-Sharp",      color:"#4e29cd", logo:"/imgs/skills/languages/cs.png",            },
+    dotnet:     { name:".NET",         color:"#4e29cd", logo:"/imgs/skills/frameworks/dotnet.png",       },
+    gd:         { name:"GDScript",     color:"#4487b9", logo:"/imgs/skills/languages/gd.png",            },
+    godot:      { name:"Godot",        color:"#4487b9", logo:"/imgs/skills/languages/gd.png",            },
+    arduino:    { name:"Arduino",      color:"#19999f", logo:"/imgs/work/arduino-sonar/logo.png",        },
+    processing: { name:"Processing",   color:"#0465f7", logo:"/imgs/skills/technologies/processing.png", },
+    titchy:     { name:"Titchy",       color:"#a8f715", logo:"/imgs/work/titchy/logo.png",               },
+    api:        { name:"External API", color:"#8400ff", logo:SatelliteDish,                              },
+    cli:        { name:"CLI",          color:"#8400ff", logo:SquareTerminal,                             },
+    serial:     { name:"Serial",       color:"#8400ff", logo:Usb                                         },
   };
 
   const projects: Project[] = [
@@ -52,15 +53,15 @@
       date: "Aug 2022",
       logo: "/imgs/work/the-winery/logo.png",
       preview: "/imgs/work/the-winery/logo.png",
-      stack: [techs.ts, techs.react, techs.next, techs.supabase, techs.md],
+      stack: [tech.ts, tech.react, tech.next, tech.supabase, tech.md],
     },
     {
       name: "Tuii",
-      description: "A mix-it-all app, mainly made it as a background app but it spiraled into a mixture of minigames and clock faces, with Sudoku, Tic-Tac-Toe and Minesweeper. It was fun and app to build and use.",
+      description: "A mix-it-all app, mainly made it as a background app but it spiraled into a mixture of mini-games and clock faces, with Sudoku, Tic-Tac-Toe and Minesweeper. It was fun and app to build and use.",
       date: "Feb 2024",
       logo: "/imgs/work/tuii/logo.png",
       preview: "/imgs/work/tuii/logo.png",
-      stack: [techs.ts, techs.rn, techs.expo, techs.api, tehcs.reanimated],
+      stack: [tech.ts, tech.rn, tech.expo, tech.api, tech.reanimated],
     },
     {
       name: "Lookset",
@@ -68,7 +69,7 @@
       date: "Nov 2024",
       logo: "/imgs/work/lookset/logo.png",
       preview: "/imgs/work/lookset/logo.png",
-      stack: [techs.ts, techs.svelte, techs.sveltekit, techs.supabase, techs.express, techs.techs.socketio],
+      stack: [tech.ts, tech.svelte, tech.sveltekit, tech.supabase, tech.express, tech.socketio],
     },
     {
       name: "Titchy",
@@ -76,15 +77,15 @@
       date: "Oct 2025",
       logo: "/imgs/work/titchy/logo.png",
       preview: "/imgs/work/titchy/logo.png",
-      stacks: [tech.ts, tech.svelte, tech.vite, tech.npm],
+      stack: [tech.ts, tech.svelte, tech.vite, tech.npm],
     },
     {
       name: "Enuii",
-      descirption: "A programming language interpreter for my own custom language named the same; Enuii, built in C# for speed and type strictness. Though it may not be used practically, it was sure great building a custom lexer, parser, semantics analyzer, and evaluator.",
+      description: "A programming language interpreter for my own custom language named the same; Enuii, built in C# for speed and type strictness. Though it may not be used practically, it was sure great building a custom lexer, parser, semantics analyzer, and evaluator.",
       date: "May 2024",
-      logo: "/imgs/work/enuii/logo.png",
-      preview: "/imgs/work/enuii/logo.png",
-      stacks: [techs.cs, techs.dotnet, techs.cli],
+      logo: "/imgs/skills/languages/cs.png",
+      preview: "/imgs/skills/languages/cs.png",
+      stack: [tech.cs, tech.dotnet, tech.cli],
     },
     {
       name: "SuperPong",
@@ -92,7 +93,7 @@
       date: "Sep 2024",
       logo: "/imgs/work/superpong/logo.png",
       preview: "/imgs/work/superpong/logo.png",
-      stacks: [techs.gd, techs.godot],
+      stack: [tech.gd, tech.godot],
     },
     {
       name: "Arduino Sonar",
@@ -100,7 +101,7 @@
       date: "Nov 2024",
       logo: "/imgs/work/arduino-sonar/logo.png",
       preview: "/imgs/work/arduino-sonar/logo.png",
-      stacks: [techs.arduino, techs.serial, techs.processing],
+      stack: [tech.arduino, tech.serial, tech.processing],
     },
     {
       name: "Portfolio",
@@ -108,7 +109,7 @@
       date: "Nov 2025",
       logo: "/imgs/work/portfolio/logo.png",
       preview: "/imgs/work/portfolio/logo.png",
-      stacks: [techs.ts, techs.svelte, techs.sveltekit, techs.titchy],
+      stack: [tech.ts, tech.svelte, tech.sveltekit, tech.titchy],
     },
   ];
 </script>
@@ -119,10 +120,52 @@
   icon={Boxes}
 >
   <div class="work">
-    <Cat />
-    <span>
-      Meow
-    </span>
+    <Carousel class="projects">
+      {#each projects as proj, i (i)}
+        <Panel variant="secondary" class="project">
+          <div class="preview">
+          </div>
+          <div class="info">
+            <div class="logo">
+              <img
+                src={proj.logo}
+                alt="{proj.name}'s logo"
+              />
+              <div class="date">
+                {proj.date}
+              </div>
+            </div>
+            <div class="texts">
+              <span class="name">
+                {proj.name}
+              </span>
+              <span class="description">
+                {proj.description}
+              </span>
+              <div class="stack">
+                {#each proj.stack as tech}
+                  <div class="tech" style="--color: {tech.color}">
+                    {#if typeof tech.logo === 'string'}
+                      <img
+                        src={tech.logo}
+                        alt="{tech.name}'s logo"
+                        class="icon"
+                      />
+                    {:else}
+                      {@const Icon = tech.logo}
+                      <Icon class="icon" />
+                    {/if}
+                    <span class="name">
+                      {tech.name}
+                    </span>
+                  </div>
+                {/each}
+              </div>
+            </div>
+          </div>
+        </Panel>
+      {/each}
+    </Carousel>
   </div>
 </SectionPage>
 
@@ -133,5 +176,91 @@
     flex: 1;
     align-items: center;
     justify-content: center;
+
+    :global
+    .titchy.carousel.projects {
+      --carousel-content-width: 70dvw;
+
+      .project {
+        $g: 10px;
+        padding: 0;
+        justify-content: space-between;
+        min-height: 300px;
+
+        .preview {
+          flex: 1;
+          min-height: 5rem;
+        }
+
+        .info {
+          flex-direction: row;
+          gap: $g;
+          padding: $g;
+          border-radius: 10px;
+          background-color: C(accent, 10%);
+
+          .logo {
+            align-items: center;
+            justify-content: space-between;
+            gap: $g;
+
+            img {
+              @include size(4rem);
+              object-fit: contain;
+            }
+
+            .date {
+              font-size: 0.6rem;
+              font-weight: bold;
+              color: C(secondary, 30%);
+            }
+          }
+
+          .texts {
+            align-items: start;
+            justify-content: center;
+            gap: calc($g / 2);
+
+            > .name {
+              color: C(accent);
+              font-size: 1.1rem;
+              font-weight: bold;
+            }
+
+            .description {
+              color: C(secondary, 75%);
+              font-size: 0.85rem;
+            }
+
+            .stack {
+              flex-direction: row;
+              flex-wrap: wrap;
+              gap: $g;
+              margin-top: $g;
+
+              .tech {
+                flex-direction: row;
+                align-items: center;
+
+                background-color: set-alpha(var(--color), 15%);
+                color: var(--color);
+
+                padding: calc($g / 2);
+                border-radius: calc($g / 2);
+
+                font-size: 0.75rem;
+                font-weight: bold;
+                gap: calc($g / 2);
+
+                .icon {
+                  @include size(1.2em, 'all');
+                  object-fit: contain;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 </style>
