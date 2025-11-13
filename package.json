@@ -26,6 +26,6 @@
 		"@lucide/svelte": "^0.552.0",
 		"@vercel/analytics": "^1.5.0",
 		"dayjs": "^1.11.19",
-		"titchy": "^0.0.25"
+		"titchy": "^0.0.26"
 	}
 }

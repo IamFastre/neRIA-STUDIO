@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Dog, Phone } from "@lucide/svelte";
+  import { Cat, Phone } from "@lucide/svelte";
 
   import { SectionPage } from "$/components";
 </script>
@@ -10,9 +10,9 @@
   icon={Phone}
 >
   <div class="contact">
-    <Dog />
+    <Cat />
     <span>
-      Woof
+      Meow
     </span>
   </div>
 </SectionPage>

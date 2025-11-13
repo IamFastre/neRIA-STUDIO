@@ -26,6 +26,7 @@
     { name:"Sass",       logo:"/imgs/skills/libraries/sass.png",       rate:5   },
     { name:"Zod",        logo:"/imgs/skills/libraries/zod.png",        rate:5   },
     { name:"Reanimated", logo:"/imgs/skills/libraries/reanimated.png", rate:4   },
+    { name:"Socket.IO",  logo:"/imgs/skills/libraries/socketio.png",   rate:4   },
     { name:"Express",    logo:"/imgs/skills/libraries/express.png",    rate:3.5 },
     { name:"Solid",      logo:"/imgs/skills/libraries/solid.png",      rate:3   },
   ];
@@ -38,14 +39,17 @@
   ];
 
   const technologies: Skill[] = [
-    { name:"VS Code",        logo:"/imgs/skills/technologies/vscode.png", rate:5   },
-    { name:"Node.js",        logo:"/imgs/skills/technologies/node.png",   rate:5   },
-    { name:"Git",            logo:"/imgs/skills/technologies/git.png",    rate:4   },
-    { name:"AWS",            logo:"/imgs/skills/technologies/aws.png",    rate:3.5 },
-    { name:"WSL",            logo:"/imgs/skills/technologies/wsl.png",    rate:3.5 },
-    { name:"GitHub Actions", logo:"/imgs/skills/technologies/github.png", rate:3.5 },
-    { name:"Docker",         logo:"/imgs/skills/technologies/docker.png", rate:3   },
-    { name:"Godot",          logo:"/imgs/skills/languages/gd.png",        rate:3   },
+    { name:"VS Code",        logo:"/imgs/skills/technologies/vscode.png",     rate:5   },
+    { name:"Node.js",        logo:"/imgs/skills/technologies/node.png",       rate:5   },
+    { name:"Vite",           logo:"/imgs/skills/technologies/vite.png",       rate:5   },
+    { name:"Git",            logo:"/imgs/skills/technologies/git.png",        rate:4   },
+    { name:"npm",            logo:"/imgs/skills/technologies/npm.png",        rate:4   },
+    { name:"Processing",     logo:"/imgs/skills/technologies/processing.png", rate:4   },
+    { name:"AWS",            logo:"/imgs/skills/technologies/aws.png",        rate:3.5 },
+    { name:"WSL",            logo:"/imgs/skills/technologies/wsl.png",        rate:3.5 },
+    { name:"GitHub Actions", logo:"/imgs/skills/technologies/github.png",     rate:3.5 },
+    { name:"Docker",         logo:"/imgs/skills/technologies/docker.png",     rate:3   },
+    { name:"Godot",          logo:"/imgs/skills/languages/gd.png",            rate:3   },
   ];
 
   const databases: Skill[] = [
@@ -65,7 +69,7 @@
 </script>
 
 {#snippet group(Icon: typeof IconType, title: string, skillsList: Skill[])}
-  <Panel class="group">
+  <Panel variant="secondary" class="group">
     <div class="header">
       <div class="icon">
         <Icon />
@@ -119,9 +123,6 @@
     .titchy.panel.group {
       flex: 1;
       padding: 15px;
-      border: 2px solid C(accent, 30%);
-      background-color: C(accent, 15%);
-      border-radius: 15px;
 
       @include wide-screen { min-width: 30%; }
 
