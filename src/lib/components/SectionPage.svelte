@@ -55,7 +55,7 @@
     }
   }
 
-  :global p {
+  :global(p, .padded) {
     @include wide-screen {
       padding: 0 70px;
     }
