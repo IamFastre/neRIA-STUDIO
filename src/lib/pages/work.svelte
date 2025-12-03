@@ -88,6 +88,16 @@
       stack: [tech.ts, tech.svelte, tech.vite, tech.npm],
     },
     {
+      name: "Fussr",
+      description: "A Q&A website without hassle for everyone with extra focus on MENA devs and tech savvies. Originally made for the Qimma hackathon, it still is open for all.",
+      date: "Nov 2025",
+      logo: "/imgs/work/fussr/logo.png",
+      preview: "/imgs/work/fussr/preview.png",
+      site: "https://fussr.neria.studio",
+      repo: "https://github.com/IamFastre/Fussr",
+      stack: [tech.ts, tech.svelte, tech.sveltekit, tech.supabase, tech.md],
+    },
+    {
       name: "Enuii",
       description: "A programming language interpreter for my own custom language named the same; Enuii, built in C# for speed and type strictness. Though it may not be used practically, it was sure great building a custom lexer, parser, semantics analyzer, and evaluator.",
       date: "May 2024",
